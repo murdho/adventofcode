@@ -8,16 +8,58 @@ import (
 	"strings"
 )
 
+const (
+	inputFile        = "../inputs/day01.txt"
+	inputExampleFile = "../inputs/day01_example.txt"
+)
+
 func PartOne() int {
-	bb, err := os.ReadFile("../inputs/day01_part1.txt")
+	left, right := readLists(inputFile)
+
+	sort.Ints(left)
+	sort.Ints(right)
+
+	distances := make([]int, len(left))
+	for i := range left {
+		distances[i] = int(math.Abs(float64(right[i]) - float64(left[i])))
+	}
+
+	var sum int
+	for _, n := range distances {
+		sum += n
+	}
+
+	return sum
+}
+
+func PartTwo() int {
+	left, right := readLists(inputFile)
+
+	tallies := make(map[int]int)
+	for _, n := range right {
+		tallies[n] += 1
+	}
+
+	var similarityScore int
+	for _, n := range left {
+		if tally, ok := tallies[n]; ok {
+			similarityScore += n * tally
+		}
+	}
+
+	return similarityScore
+}
+
+func readLists(fname string) ([]int, []int) {
+	bb, err := os.ReadFile(fname)
 	if err != nil {
 		panic(err)
 	}
 
 	lines := strings.Split(string(bb), "\n")
 
-	list1 := make([]int, len(lines))
-	list2 := make([]int, len(lines))
+	left := make([]int, len(lines))
+	right := make([]int, len(lines))
 
 	for i, l := range lines {
 		parts := strings.Split(l, "   ")
@@ -35,22 +77,9 @@ func PartOne() int {
 			panic(err)
 		}
 
-		list1[i] = num1
-		list2[i] = num2
+		left[i] = num1
+		right[i] = num2
 	}
 
-	sort.Ints(list1)
-	sort.Ints(list2)
-
-	distances := make([]int, len(list1))
-	for i := range list1 {
-		distances[i] = int(math.Abs(float64(list2[i]) - float64(list1[i])))
-	}
-
-	var sum int
-	for _, d := range distances {
-		sum += d
-	}
-
-	return sum
+	return left, right
 }
