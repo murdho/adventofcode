@@ -9,7 +9,7 @@ import (
 )
 
 func PartOne() int {
-	bb, err := os.ReadFile("day01/input_part_one.txt")
+	bb, err := os.ReadFile("../inputs/day01_part1.txt")
 	if err != nil {
 		panic(err)
 	}
