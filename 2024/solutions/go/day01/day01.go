@@ -1,7 +1,6 @@
 package day01
 
 import (
-	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -9,8 +8,8 @@ import (
 )
 
 const (
-	inputFile        = "../inputs/day01.txt"
-	inputExampleFile = "../inputs/day01_example.txt"
+	inputFile = "../../inputs/day01.txt"
+	// inputFile = "../../inputs/day01_example.txt"
 )
 
 func PartOne() int {
@@ -19,14 +18,9 @@ func PartOne() int {
 	sort.Ints(left)
 	sort.Ints(right)
 
-	distances := make([]int, len(left))
-	for i := range left {
-		distances[i] = int(math.Abs(float64(right[i]) - float64(left[i])))
-	}
-
 	var sum int
-	for _, n := range distances {
-		sum += n
+	for i := range left {
+		sum += abs(right[i] - left[i])
 	}
 
 	return sum
@@ -37,7 +31,7 @@ func PartTwo() int {
 
 	tallies := make(map[int]int)
 	for _, n := range right {
-		tallies[n] += 1
+		tallies[n]++
 	}
 
 	var similarityScore int
@@ -62,7 +56,7 @@ func readLists(fname string) ([]int, []int) {
 	right := make([]int, len(lines))
 
 	for i, l := range lines {
-		parts := strings.Split(l, "   ")
+		parts := strings.Fields(l)
 		if len(parts) != 2 {
 			continue // skip the last empty line
 		}
@@ -82,4 +76,11 @@ func readLists(fname string) ([]int, []int) {
 	}
 
 	return left, right
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }
