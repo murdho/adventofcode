@@ -2,14 +2,13 @@ const INPUT: &'static str = include_str!("../../2024_inputs/day01.txt");
 // const INPUT: &'static str = include_str!("../../2024_inputs/day01_example.txt");
 
 pub fn part_one() -> i32 {
-    let numbers: Vec<Vec<i32>> = INPUT
-        .lines()
-        .map(|line| {
-            line.split_whitespace()
-                .map(|s| s.parse::<_>().unwrap())
-                .collect::<Vec<_>>()
-        })
-        .collect::<Vec<_>>();
+    let parse_numbers = |line: &str| -> Vec<i32> {
+        line.split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect()
+    };
+
+    let numbers: Vec<Vec<i32>> = INPUT.lines().map(parse_numbers).collect();
 
     let mut transposed = vec![Vec::with_capacity(numbers.len()); numbers[0].len()];
     for row in numbers {
@@ -18,14 +17,10 @@ pub fn part_one() -> i32 {
         }
     }
 
-    transposed[0].sort_unstable();
-    transposed[1].sort_unstable();
+    let [mut left, mut right] = [transposed.remove(0), transposed.remove(0)];
 
-    let sum = &transposed[0]
-        .iter()
-        .zip(&transposed[1])
-        .map(|(a, b)| (a - b).abs())
-        .sum::<i32>();
+    left.sort_unstable();
+    right.sort_unstable();
 
-    *sum
+    left.iter().zip(right).map(|(a, b)| (a - b).abs()).sum()
 }
