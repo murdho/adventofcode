@@ -1,6 +1,7 @@
 use clap::Parser;
 
 mod day01;
+mod day02;
 
 #[derive(Parser)]
 struct Args {
@@ -17,6 +18,7 @@ fn main() {
     match (args.day, args.part) {
         (1, 1) => println!("{}", day01::part_one()),
         (1, 2) => println!("{}", day01::part_two()),
+        (2, 1) => println!("{}", day02::part_one()),
         (day, part) => {
             eprintln!(
                 "error: unsupported day and part combination: {} {}",
