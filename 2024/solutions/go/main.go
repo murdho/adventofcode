@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/murdho/adventofcode/2024/go/day01"
+	"github.com/murdho/adventofcode/2024/go/day02"
 )
 
 func main() {
@@ -28,6 +29,8 @@ func main() {
 		fmt.Println(day01.PartOne())
 	} else if day == 1 && part == 2 {
 		fmt.Println(day01.PartTwo())
+	} else if day == 2 && part == 1 {
+		fmt.Println(day02.PartOne())
 	} else {
 		fmt.Printf("error: unsupported day and part combination: %d %d\n", day, part)
 		os.Exit(1)

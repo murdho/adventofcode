@@ -1,8 +1,8 @@
-INPUT_FILE = "../../inputs/day01.txt"
-# INPUT_FILE = "../../inputs/day01_example.txt"
+DAY1_INPUT_FILE = "../../inputs/day01.txt"
+# DAY1_INPUT_FILE = "../../inputs/day01_example.txt"
 
 def day1_part1
-  read_lists(INPUT_FILE)
+  read_lists(DAY1_INPUT_FILE)
     .map(&:sort)
     .then { _1.zip _2 }
     .map { (_1 - _2).abs }
@@ -10,7 +10,7 @@ def day1_part1
 end
 
 def day1_part2
-  left, frequencies = read_lists(INPUT_FILE).then { [_1, _2.tally] }
+  left, frequencies = read_lists(DAY1_INPUT_FILE).then { [_1, _2.tally] }
   left.sum { _1 * frequencies.fetch(_1, 0) }
 end
 
