@@ -16,6 +16,7 @@ fn main() {
 
     match (args.day, args.part) {
         (1, 1) => println!("{}", day01::part_one()),
+        (1, 2) => println!("{}", day01::part_two()),
         (day, part) => {
             eprintln!(
                 "error: unsupported day and part combination: {} {}",
