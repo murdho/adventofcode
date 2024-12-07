@@ -19,6 +19,7 @@ fn main() {
         (1, 1) => println!("{}", day01::part_one()),
         (1, 2) => println!("{}", day01::part_two()),
         (2, 1) => println!("{}", day02::part_one()),
+        (2, 2) => println!("{}", day02::part_two()),
         (day, part) => {
             eprintln!(
                 "error: unsupported day and part combination: {} {}",
