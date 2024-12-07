@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	inputFile = "../../inputs/day02.txt"
-	// inputFile = "../../inputs/day02_example.txt"
+	inputFile = "../2024_inputs/day02.txt"
+	// inputFile = "../2024_inputs/day02_example.txt"
 )
 
 func PartOne() int {

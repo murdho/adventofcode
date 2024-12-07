@@ -1,5 +1,5 @@
-DAY1_INPUT_FILE = "../../inputs/day01.txt"
-# DAY1_INPUT_FILE = "../../inputs/day01_example.txt"
+DAY1_INPUT_FILE = "../2024_inputs/day01.txt"
+# DAY1_INPUT_FILE = "../2024_inputs/day01_example.txt"
 
 def day1_part1
   read_lists(DAY1_INPUT_FILE)

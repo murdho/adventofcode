@@ -1,5 +1,5 @@
-DAY2_INPUT_FILE = "../../inputs/day02.txt"
-# DAY2_INPUT_FILE = "../../inputs/day02_example.txt"
+DAY2_INPUT_FILE = "../2024_inputs/day02.txt"
+# DAY2_INPUT_FILE = "../2024_inputs/day02_example.txt"
 
 def day2_part1
   reports = File.readlines(DAY2_INPUT_FILE).map { _1.split(/\s+/).map(&:to_i) }
