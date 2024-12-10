@@ -3,6 +3,7 @@ use clap::Parser;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 #[derive(Parser)]
 struct Args {
@@ -23,6 +24,8 @@ fn main() {
         (2, 2) => println!("{}", day02::part_two()),
         (3, 1) => println!("{}", day03::part_one()),
         (3, 2) => println!("{}", day03::part_two()),
+        (4, 1) => println!("{}", day04::part_one()),
+        (4, 2) => println!("{}", day04::part_two()),
         (day, part) => {
             eprintln!(
                 "error: unsupported day and part combination: {} {}",
