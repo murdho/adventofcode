@@ -2,27 +2,27 @@ const INPUT: &str = include_str!("../../2024_inputs/day04.txt");
 // const INPUT: &str = include_str!("../../2024_inputs/day04_example.txt");
 
 pub fn part_one() -> i32 {
-    let m: Vec<Vec<_>> = INPUT
+    let matrix: Vec<Vec<_>> = INPUT
         .lines()
-        .map(|line| line.chars().map(|s| s.to_string()).collect::<Vec<_>>())
+        .map(|line| line.chars().map(|s| s.to_string()).collect())
         .collect();
 
-    let max_rows = m.len();
-    let max_cols = m.len();
+    let max_rows = matrix.len();
+    let max_cols = matrix.len();
 
     let mut result = 0;
 
-    for i in 0..max_rows {
-        for j in 0..max_cols {
-            if m[i][j] == "X" {
+    for row in 0..max_rows {
+        for col in 0..max_cols {
+            if matrix[row][col] == "X" {
                 //
                 // XMAS
                 //
                 //
-                if j < max_cols - 3
-                    && m[i][j + 1] == "M"
-                    && m[i][j + 2] == "A"
-                    && m[i][j + 3] == "S"
+                if col < max_cols - 3
+                    && matrix[row][col + 1] == "M"
+                    && matrix[row][col + 2] == "A"
+                    && matrix[row][col + 3] == "S"
                 {
                     result += 1;
                 }
@@ -31,11 +31,11 @@ pub fn part_one() -> i32 {
                 //  M
                 //   A
                 //    S
-                if i < max_rows - 3
-                    && j < max_cols - 3
-                    && m[i + 1][j + 1] == "M"
-                    && m[i + 2][j + 2] == "A"
-                    && m[i + 3][j + 3] == "S"
+                if row < max_rows - 3
+                    && col < max_cols - 3
+                    && matrix[row + 1][col + 1] == "M"
+                    && matrix[row + 2][col + 2] == "A"
+                    && matrix[row + 3][col + 3] == "S"
                 {
                     result += 1;
                 }
@@ -44,10 +44,10 @@ pub fn part_one() -> i32 {
                 // M
                 // A
                 // S
-                if i < max_rows - 3
-                    && m[i + 1][j] == "M"
-                    && m[i + 2][j] == "A"
-                    && m[i + 3][j] == "S"
+                if row < max_rows - 3
+                    && matrix[row + 1][col] == "M"
+                    && matrix[row + 2][col] == "A"
+                    && matrix[row + 3][col] == "S"
                 {
                     result += 1;
                 }
@@ -56,11 +56,11 @@ pub fn part_one() -> i32 {
                 //   M
                 //  A
                 // S
-                if i < max_rows - 3
-                    && j >= 3
-                    && m[i + 1][j - 1] == "M"
-                    && m[i + 2][j - 2] == "A"
-                    && m[i + 3][j - 3] == "S"
+                if row < max_rows - 3
+                    && col >= 3
+                    && matrix[row + 1][col - 1] == "M"
+                    && matrix[row + 2][col - 2] == "A"
+                    && matrix[row + 3][col - 3] == "S"
                 {
                     result += 1;
                 }
@@ -69,7 +69,11 @@ pub fn part_one() -> i32 {
                 // SAMX
                 //
                 //
-                if j >= 3 && m[i][j - 1] == "M" && m[i][j - 2] == "A" && m[i][j - 3] == "S" {
+                if col >= 3
+                    && matrix[row][col - 1] == "M"
+                    && matrix[row][col - 2] == "A"
+                    && matrix[row][col - 3] == "S"
+                {
                     result += 1;
                 }
 
@@ -77,11 +81,11 @@ pub fn part_one() -> i32 {
                 //  A
                 //   M
                 //    X
-                if i >= 3
-                    && j >= 3
-                    && m[i - 1][j - 1] == "M"
-                    && m[i - 2][j - 2] == "A"
-                    && m[i - 3][j - 3] == "S"
+                if row >= 3
+                    && col >= 3
+                    && matrix[row - 1][col - 1] == "M"
+                    && matrix[row - 2][col - 2] == "A"
+                    && matrix[row - 3][col - 3] == "S"
                 {
                     result += 1;
                 }
@@ -90,7 +94,11 @@ pub fn part_one() -> i32 {
                 // A
                 // M
                 // X
-                if i >= 3 && m[i - 1][j] == "M" && m[i - 2][j] == "A" && m[i - 3][j] == "S" {
+                if row >= 3
+                    && matrix[row - 1][col] == "M"
+                    && matrix[row - 2][col] == "A"
+                    && matrix[row - 3][col] == "S"
+                {
                     result += 1;
                 }
 
@@ -98,11 +106,11 @@ pub fn part_one() -> i32 {
                 //   A
                 //  M
                 // X
-                if i >= 3
-                    && j < max_cols - 3
-                    && m[i - 1][j + 1] == "M"
-                    && m[i - 2][j + 2] == "A"
-                    && m[i - 3][j + 3] == "S"
+                if row >= 3
+                    && col < max_cols - 3
+                    && matrix[row - 1][col + 1] == "M"
+                    && matrix[row - 2][col + 2] == "A"
+                    && matrix[row - 3][col + 3] == "S"
                 {
                     result += 1;
                 }
