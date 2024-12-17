@@ -2,13 +2,10 @@ const INPUT: &str = include_str!("../../2024_inputs/day04.txt");
 // const INPUT: &str = include_str!("../../2024_inputs/day04_example.txt");
 
 pub fn part_one() -> i32 {
-    let matrix: Vec<Vec<_>> = INPUT
-        .lines()
-        .map(|line| line.chars().map(|s| s.to_string()).collect())
-        .collect();
+    let matrix = read_input();
 
     let max_rows = matrix.len();
-    let max_cols = matrix.len();
+    let max_cols = matrix[0].len();
 
     let mut result = 0;
 
@@ -121,6 +118,48 @@ pub fn part_one() -> i32 {
     result
 }
 
+fn read_input() -> Vec<Vec<String>> {
+    INPUT
+        .lines()
+        .map(|line| line.chars().map(|s| s.to_string()).collect())
+        .collect()
+}
+
 pub fn part_two() -> i32 {
-    -1
+    let matrix = read_input();
+
+    let max_rows = matrix.len();
+    let max_cols = matrix[0].len();
+
+    let mut result = 0;
+
+    for row in 0..max_rows {
+        for col in 0..max_cols {
+            if matrix[row][col] == "A" {
+                // center cannot be on the edge, no point to check further
+                if row == 0 || col == 0 || row == max_rows - 1 || col == max_cols - 1 {
+                    continue;
+                }
+
+                let top_left = &matrix[row - 1][col - 1];
+                let top_right = &matrix[row - 1][col + 1];
+                let bottom_left = &matrix[row + 1][col - 1];
+                let bottom_right = &matrix[row + 1][col + 1];
+
+                // \
+                let diagonal_desc = (top_left == "M" && bottom_right == "S")
+                    || (top_left == "S" && bottom_right == "M");
+
+                // /
+                let diagonal_asc = (top_right == "M" && bottom_left == "S")
+                    || (top_right == "S" && bottom_left == "M");
+
+                if diagonal_desc && diagonal_asc {
+                    result += 1;
+                }
+            }
+        }
+    }
+
+    result
 }
